@@ -1,0 +1,60 @@
+{% load static %}
+{% comment %} 
+{% if obj.has_other_pages %}
+    <div class="pagination"> 
+      <ul class="container">
+        {% if obj.has_previous %}
+        <li><a href="?page={{obj.previous_page_number}}" class="btn page-link btn--sub">&#10094; Prev</a></li>             
+        {% endif %}
+
+        {# {% for page in paginator.page_range %} #}
+        {% for page in custom_range %}
+           {% if page == obj.number %}
+           <li><a href="?page={{page}}" class="btn page-link btn--sub">{{page}}</a></li>     
+           {% else %}
+           <li><a href="?page={{page}}" class="btn page-link">{{page}}</a></li>
+           {% endif %}
+        {% endfor %}
+
+        {% if obj.has_next %}
+        <li><a href="?page={{obj.next_page_number}}" class="btn page-link btn--sub"> Next &#10095;</a></li>             
+        {% endif %}
+        
+      </ul>
+    </div>
+    {% endif %}
+    {% endcomment %}
+
+    {# The above code will work only for the projects.html which has the projects (obj in this case) context variable for its view#}
+    {# To make it work for multiple files such as the developers page update the projects(obj) variable context to queryset#}
+    {% if queryset.has_other_pages %}
+    <div class="pagination">
+      <ul class="container">
+        {% if queryset.has_previous %}
+        <li><a href="?page={{queryset.previous_page_number}}" class="btn page-link btn--sub" data-page="{{queryset.previous_page_number}}">&#10094; Prev</a></li>             
+        {% endif %}
+
+        {# {% for page in paginator.page_range %} #}
+        {% for page in custom_range %}
+           {% if page == queryset.number %}
+           <li><a href="?page={{page}}" class="btn page-link btn--sub" data-page="{{page}}">{{page}}</a></li>     
+           {% else %}
+           <li><a href="?page={{page}}" class="btn page-link" data-page="{{page}}">{{page}}</a></li>
+           {% endif %}
+        {% endfor %}
+
+        {% if queryset.has_next %}
+        <li><a href="?page={{queryset.next_page_number}}" class="btn page-link btn--sub" data-page="{{queryset.next_page_number}}"> Next &#10095;</a></li>             
+        {% endif %}
+        
+      </ul>
+    </div>
+    {% endif %}
+
+    {% comment %} 
+      Now to make it dynamic pass the queryset variable in the include clause as
+      follows:
+            {% include 'pagination.html' with queryset=obj custom_range=custom_range %}
+    {% endcomment %}
+
+   <script src="{% static 'uikit/paginate_search_query.js' %}"></script>

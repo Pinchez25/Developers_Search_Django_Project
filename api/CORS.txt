@@ -1,0 +1,4 @@
+CORS - cross origin resource sharing
+
+Anytime you are working with two different applications, if your request is not coming from the same server
+you may run into cors error
