@@ -4,6 +4,7 @@ This project is part of a Udemy course by [Dennis Ivy](https://www.udemy.com/cou
 >This project is in form of a website designed to search for developers with their various skill sets and reviews.
 > A new developer can login, register an account, create skills and profile, review projects, send messages etc.
 > The application sends an email to welcome a newly registered user.
+> The project also includes an **API** created using the djangorestframework
 
 ### Screenshots
 
